@@ -51,11 +51,18 @@ class TestEmbedder:
 
     def test_similar_texts_closer(self):
         embedder = TFIDFEmbedder()
-        docs = ["kubernetes pod deployment", "docker container network", "kubernetes service ingress"]
+        docs = [
+            "kubernetes pod deployment orchestration cluster",
+            "kubernetes service ingress load balancer cluster",
+            "docker container network bridge isolation volumes",
+            "docker image registry build push pull layers",
+            "kubernetes namespace resource quota limits pods",
+            "docker compose multi container application stack",
+        ]
         embedder.fit(docs)
-        v1 = embedder.embed("kubernetes pod")
-        v2 = embedder.embed("docker container")
-        v3 = embedder.embed("kubernetes service")
+        v1 = embedder.embed("kubernetes pod cluster")
+        v2 = embedder.embed("docker container network")
+        v3 = embedder.embed("kubernetes namespace pods")
         sim_k_k = float(v1 @ v3)
         sim_k_d = float(v1 @ v2)
         assert sim_k_k > sim_k_d
